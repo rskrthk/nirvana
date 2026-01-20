@@ -14,7 +14,7 @@ import { Meditation } from './pages/Meditation';
 import { PersonalisedYoga } from './pages/PersonalisedYoga';
 import { PersonalisedDetails } from './pages/PersonalisedDetails';
 import { PersonalisedAsanaPlan } from './pages/PersonalisedAsanaPlan';
-import { SESSION_TIMESTAMP_KEY } from './constants';
+// import { SESSION_TIMESTAMP_KEY } from './constants';
 
 const LOGIN_PATH = '/login';
 const OTP_PATH = '/otp';
@@ -25,7 +25,7 @@ const MEDITATION_PATH = '/meditation';
 const PERSONALISED_YOGA_PATH = '/personalised-yoga';
 const PERSONALISED_DETAILS_PATH = '/personalised-details';
 const PERSONALISED_ASANA_PLAN_PATH = '/personalised-asana-plan';
-const SESSION_DURATION_MS = 24 * 60 * 60 * 1000; // 1 day
+// const SESSION_DURATION_MS = 24 * 60 * 60 * 1000; // 1 day
 
 const NAVBAR_PATHS = new Set([
   FREE_CONTENT_PATH,
@@ -42,25 +42,30 @@ function App() {
     let active = true;
     const checkSession = async () => {
       try {
-        const [{ value: token }, { value: loggedAt }] = await Promise.all([
-          Preferences.get({ key: 'accessToken' }),
-          Preferences.get({ key: SESSION_TIMESTAMP_KEY }),
-        ]);
+        // const [{ value: token }, { value: loggedAt }] = await Promise.all([
+        //   Preferences.get({ key: 'accessToken' }),
+        //   Preferences.get({ key: SESSION_TIMESTAMP_KEY }),
+        // ]);
 
-        if (token && loggedAt) {
-          const lastLogin = Number(loggedAt);
-          if (!Number.isNaN(lastLogin) && Date.now() - lastLogin < SESSION_DURATION_MS) {
-            window.history.replaceState(null, '', HOME_PATH);
-            if (active) {
-              setCurrentPath(HOME_PATH);
-            }
-            return;
+        // if (token && loggedAt) {
+        //   const lastLogin = Number(loggedAt);
+        //   if (!Number.isNaN(lastLogin) && Date.now() - lastLogin < SESSION_DURATION_MS) {
+        //     window.history.replaceState(null, '', HOME_PATH);
+        //     if (active) {
+        //       setCurrentPath(HOME_PATH);
+        //     }
+        //     return;
+        const { value: token } = await Preferences.get({ key: 'accessToken' });
+        if (token) {
+          window.history.replaceState(null, '', HOME_PATH);
+          if (active) {
+            setCurrentPath(HOME_PATH);
           }
         }
 
-        await Preferences.remove({ key: 'accessToken' });
-        await Preferences.remove({ key: 'userInfo' });
-        await Preferences.remove({ key: SESSION_TIMESTAMP_KEY });
+        // await Preferences.remove({ key: 'accessToken' });
+        // await Preferences.remove({ key: 'userInfo' });
+        // await Preferences.remove({ key: SESSION_TIMESTAMP_KEY });
       } catch (error) {
         console.warn('Unable to verify saved session', error);
       }
