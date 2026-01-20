@@ -1,0 +1,206 @@
+/* ========= Base Reset ========= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #ffffff; /* PURE WHITE (matches design) */
+  color: #1f2933;
+  min-height: 100vh;
+}
+
+/* ========= Main Container ========= */
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top, 20px) + 40px) 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ========= Logo ========= */
+.logo-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.logo-circle {
+  width: 130px; /* Slightly larger like mockup */
+  height: 130px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-circle img {
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ========= Text Heading ========= */
+.welcome-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.welcome-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #3c4554;
+}
+
+.welcome-subtitle {
+  font-size: 15px;
+  color: #7c8698;
+}
+
+/* ========= Input Section ========= */
+.input-box {
+  width: 100%;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-row {
+  display: flex;
+  gap: 12px;
+}
+
+/* Label */
+.input-label {
+  font-size: 14px;
+  color: #6a7280;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+/* Country Code Select */
+.country-select {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid #c4ccd8;
+  background: #fff;
+  font-size: 16px;
+  padding-left: 12px;
+}
+
+/* Mobile Input */
+.mobile-input {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid #bfc8d4;
+  padding-left: 14px;
+  font-size: 16px;
+  background: #fff;
+}
+
+/* ========= SEND OTP Button ========= */
+.otp-button {
+  height: 50px;
+  border-radius: 14px;
+  background: #3c8169;
+  background: linear-gradient(180deg, #34a071 0%, #238655 100%);
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+.otp-button.disabled {
+  background: #d8dbe0 !important;
+  color: #9ba1b0 !important;
+  cursor: not-allowed;
+}
+
+/* ========= Divider ========= */
+.divider {
+  display: flex;
+  align-items: center;
+  color: #9aa1b1;
+  gap: 8px;
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex-grow: 1;
+  height: 1px;
+  background: #e1e3e8;
+}
+
+/* ========= Social Buttons ========= */
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-btn {
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid #ccd3de;
+  font-size: 16px;
+  background: white;
+  font-weight: 600;
+  color: #3e495a;
+  cursor: pointer;
+}
+
+/* ========= Create Account ========= */
+.create-account {
+  margin-top: 20px;
+  color: #596374;
+}
+
+.create-link {
+  color: #3c8169;
+  font-weight: 700;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+
+/* ========= Responsive Tweaks ========= */
+@media (max-width: 480px) {
+  .login-container {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 40px);
+    padding-left: clamp(16px, 5vw, 24px);
+    padding-right: clamp(16px, 5vw, 24px);
+  }
+}
+
+@media (min-width: 600px) {
+  .login-container {
+    padding-top: 48px;
+  }
+}
+
+@media (min-width: 768px) {
+  .login-container {
+    max-width: 440px;
+    padding-top: 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .login-container {
+    max-width: 480px;
+  }
+}

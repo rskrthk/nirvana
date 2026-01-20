@@ -1,0 +1,199 @@
+/* ========= OTP Entry ========= */
+.otp-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+}
+.otp-input-fields {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.otp-single-input {
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.otp-single-input:focus {
+  border-color: #3c8169;
+  box-shadow: 0 0 0 3px rgba(60, 129, 105, 0.25);
+  outline: none;
+}
+
+/* ========= Back Button ========= */
+.back-button-top {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.back-button-top:hover {
+  background: #f1f5f9;
+}
+.back-button-top::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #111827;
+  border-bottom: 2px solid #111827;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* ========= OTP Screen Layout ========= */
+.login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  min-height: 100vh;
+}
+
+/* Heading area */
+.welcome-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.welcome-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2e7d67;
+  margin: 0 0 8px;
+}
+.otp-description-text {
+  font-size: 15px;
+  color: #5f6b7a;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Back button (top-left) */
+.back-button-top {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+.back-button-top::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #2e7d67;
+  border-bottom: 2px solid #2e7d67;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* OTP Inputs */
+.otp-input-fields {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.otp-single-input {
+  width: 60px;
+  height: 60px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  color: #2e7d67;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.otp-single-input:focus {
+  border-color: #3c8169;
+  box-shadow: 0 0 0 3px rgba(60, 129, 105, 0.25);
+  outline: none;
+}
+
+/* Verify button */
+.otp-submit {
+  width: 100%;
+  max-width: 320px;
+  height: 48px;
+  background: #3c8169;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-top: 10px;
+}
+.otp-submit:hover {
+  background: #2f6a55;
+}
+
+.otp-submit:disabled,
+.otp-submit.disabled {
+  background: #d8dbe0 !important;
+  color: #9ba1b0 !important;
+  cursor: not-allowed;
+}
+
+/* Feedback (success/error) */
+.login-feedback {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
+}
+.login-feedback--error {
+  color: #dc2626;
+}
+.login-feedback--success {
+  color: #16a34a;
+}
+
+/* "Resend OTP" section */
+.otp-resend-text {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #6b7280;
+  text-align: center;
+}
+.otp-resend-text button {
+  background: none;
+  border: none;
+  color: #3c8169;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .otp-single-input {
+    width: 52px;
+    height: 52px;
+    font-size: 24px;
+  }
+}

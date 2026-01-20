@@ -1,0 +1,73 @@
+:root {
+  /* Base sizing */
+  font-size: 62.5%;
+  --font-family-sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-serif: 'Playfair Display', 'Times New Roman', serif;
+
+  /* Fluid typography scale */
+  --font-size-xs: clamp(1rem, 0.8vw + 0.8rem, 1.1rem);
+  --font-size-sm: clamp(1.3rem, 1vw + 1rem, 1.5rem);
+  --font-size-base: clamp(1.4rem, 1vw + 1.1rem, 1.6rem);
+  --font-size-md: clamp(1.6rem, 1.2vw + 1.2rem, 1.9rem);
+  --font-size-lg: clamp(1.9rem, 1.6vw + 1.3rem, 2.4rem);
+  --font-size-xl: clamp(2.4rem, 2.4vw + 1.5rem, 3.2rem);
+
+  /* Spacing scale (mirrors Tailwind-style rhythm) */
+  --space-1: 0.4rem;
+  --space-2: 0.8rem;
+  --space-3: 1.2rem;
+  --space-4: 1.6rem;
+  --space-5: 2rem;
+  --space-6: 2.4rem;
+  --space-7: 3.2rem;
+  --space-8: 4rem;
+  --space-9: 4.8rem;
+  --space-10: 6.4rem;
+
+  /* Radius & shadows */
+  --radius-sm: 0.8rem;
+  --radius-md: 1.2rem;
+  --radius-lg: 2rem;
+  --radius-pill: 999px;
+  --shadow-soft: 0 1.2rem 2.4rem rgba(15, 23, 42, 0.08);
+  --shadow-elevated: 0 1.6rem 3.2rem rgba(15, 23, 42, 0.12);
+
+  /* Palette */
+  --color-surface: #ffffff;
+  --color-elevated: #f8fafc;
+  --color-brand: #3c8169;
+  --color-brand-dark: #27604c;
+  --color-accent: #FFAE00;
+  --color-text-primary: #2A2D33;
+  --color-text-secondary: #667085;
+  --color-border: #e5e7eb;
+  --navbar-height: 6.4rem;
+  --navbar-icon-size: 2.4rem;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --font-size-base: clamp(1.5rem, 0.7vw + 1.4rem, 1.8rem);
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --font-size-base: clamp(1.6rem, 0.5vw + 1.5rem, 1.9rem);
+  }
+}
+
+body {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+}
+
+/* Reference breakpoints for developers (use rem equivalents in media queries):
+   - 36rem (576px): Large phones
+   - 48rem (768px): Tablets
+   - 64rem (1024px): Small laptops
+   - 80rem (1280px): Desktops
+*/

@@ -1,0 +1,49 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(69, 65, 65, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #3C8169;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.modal-header h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: #FEC208;
+  font-family: "Roboto";
+}
+
+.modal-body {
+  margin: 20px 0;
+  font-size: 1.2rem;
+  color: white;
+  font-family: "Roboto";
+}
+
+.modal-footer {
+  text-align: center;
+}
+
+.btn-primary-modal {
+  background-color: #FEC208; /* Green */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}

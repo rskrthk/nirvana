@@ -1,0 +1,106 @@
+import { FFmpeg } from "@ffmpeg/ffmpeg";
+import { fetchFile } from "@ffmpeg/util";
+export const MergeVideos = async (playlist: any[]) => {
+  const ffmpeg = new FFmpeg();
+  try {
+      await ffmpeg.load();
+  } catch (err) {
+      console.error("FFmpeg load failed:", err);
+      throw new Error("Failed to initialize video merger. Check Cross-Origin headers.");
+  }
+
+  const expandedList = playlist;
+
+  for (let i = 0; i < expandedList?.length; i++) {
+    const blobUrl = expandedList[i].videoUrl;
+    try {
+      const fileData = await fetchFile(blobUrl); // converts blob → Uint8Array
+      ffmpeg.writeFile(`input${i}.mp4`, fileData);
+    } catch (err) {
+      console.error(`Failed to fetch file for merge: ${blobUrl}`, err);
+      throw new Error(`Failed to load video segment ${i + 1}`);
+    }
+  }
+
+  //  3. Create concat list file for FFmpeg
+  const concatList = expandedList
+    .map((_, i) => `file input${i}.mp4`)
+    .join("\n");
+
+  ffmpeg.writeFile("concat.txt", concatList);
+
+  //  4. Run concat
+  await ffmpeg.exec([
+    "-f", "concat",
+    "-safe", "0",
+    "-i", "concat.txt",
+    "-c", "copy",
+    "output.mp4",
+  ]);
+
+  //  5. Read merged output from WASM FS
+  const data = await ffmpeg.readFile("output.mp4");
+
+  //  6. Convert Uint8Array → Browser Blob
+  const mergedBlob = new Blob([data as any], { type: "video/mp4" });
+  const mergedUrl = URL.createObjectURL(mergedBlob);
+
+  return mergedUrl;
+};
+
+
+
+
+
+// export const MergeVideos = async (playlist:any) => {
+  
+
+//   const ffmpeg = new FFmpeg();
+//   await ffmpeg.load();
+
+//   const expandedList: string[] = [];
+
+//   // Expand playlist
+//   for (let item of playlist) {
+//     const repeat = item.repetetionCount ?? 1;
+//     for (let i = 0; i < repeat; i++) {
+//       expandedList.push(item.asanaCode);
+//     }
+//   }
+
+//   // Download video blobs and load into ffmpeg FS
+//   for (let i = 0; i < expandedList.length; i++) {
+//     const asanaCode = expandedList[i];
+//     debugger;
+//      const blob = await fetchAsanaVideoBlob(asanaCode, "1080p");
+//     const fileData = await fetchFile(blob);
+
+
+//     ffmpeg.writeFile(`input${i}.mp4`, fileData);
+//   }
+
+//   // Build concat file
+//   const concatContent = expandedList
+//     .map((_, i) => `file input${i}.mp4`)
+//     .join("\n");
+
+//   ffmpeg.writeFile("concat.txt", concatContent);
+
+//   // Merge all videos
+//   await ffmpeg.exec([
+//     "-f",
+//     "concat",
+//     "-safe",
+//     "0",
+//     "-i",
+//     "concat.txt",
+//     "-c",
+//     "copy",
+//     "output.mp4",
+//   ]);
+
+//   // Return final video url
+//   const data = await ffmpeg.readFile("output.mp4");
+//   const mergedBlob = new Blob([data as any], { type: "video/mp4" });
+//   return URL.createObjectURL(mergedBlob);
+// };

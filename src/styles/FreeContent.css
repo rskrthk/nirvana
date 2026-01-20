@@ -1,0 +1,421 @@
+
+
+.free-content {
+  background: var(--color-surface);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text-primary);
+}
+
+/* ---------- HEADER ---------- */
+.free-header {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--space-3), 4vw, var(--space-5));  
+  padding: clamp(var(--space-5), 6vw, var(--space-7))
+    clamp(var(--space-5), 6vw, var(--space-7)) 0;
+
+}
+
+.free-logo-section {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.free-logo {
+  width: clamp(5.6rem, 14vw, 6.8rem);
+  height: clamp(5.6rem, 14vw, 6.8rem);
+  border-radius: 50%;
+  padding: 0.3rem;
+}
+
+.free-logo-section h3 {
+  font-size: var(--font-size-md);
+  color: var(--color-brand);
+  font-weight: 600;
+  margin: 0;
+}
+
+.free-logo-section span {
+  color: var(--color-text-primary);
+  font-weight: 400;
+}
+
+/* ---------- TABS ---------- */
+.free-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(var(--space-4), 4vw, var(--space-6));
+  margin-top: var(--space-2);
+  padding-inline: var(--space-1);
+  font-size: 18px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  border-bottom: 0.1rem solid var(--color-border);
+  padding-bottom: var(--space-3);
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.free-tabs .active-tab {
+  color: var(--color-brand);
+  font-weight: 500;
+}
+
+.free-tabs .nav-link {
+  color: #B6B6B7;
+  font-weight: 500;
+  text-decoration: none;
+  font-family: "Roboto";
+  font-size: 12px;
+}
+
+/* ---------- SECTION ---------- */
+.free-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(var(--space-6), 6vw, var(--space-7))
+    clamp(var(--space-5), 6vw, var(--space-7)) var(--space-3);
+
+  gap: clamp(var(--space-3), 3vw, var(--space-4));
+}
+
+.free-section h4 {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  margin: 0;
+}
+
+.see-more {
+  border: none;
+  background: none;
+  color: var(--color-brand);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+}
+
+/* ---------- MAIN VIDEO ---------- */
+.video-container {
+  padding: 0 clamp(var(--space-5), 6vw, var(--space-7));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(var(--space-3), 3vw, var(--space-4));
+}
+
+.main-video {
+   width: 100%;
+  height: 100%;
+  /* Keep the full video visible and centered rather than cropping it */
+  object-fit: contain;
+  object-position: center;
+  max-width: 100%;
+  max-height: 100%;
+  background: #000;
+  display: block;
+}
+.main-video:fullscreen,
+.main-video:-webkit-full-screen,
+.main-video:-moz-full-screen,
+.main-video:-ms-fullscreen {
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+.video-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: clamp(var(--space-3), 3vw, var(--space-4));
+}
+
+.video-details h5 {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin: 0;
+}
+/* FIXED HEIGHT VIDEO WRAPPER */
+.video-wrapper {
+  width: 100%;
+  height: 160px; /* default height for loading & video */
+  background: #000;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Larger devices */
+@media (min-width: 600px) {
+  .video-wrapper {
+    height: 320px;
+  }
+}
+
+@media (min-width: 900px) {
+  .video-wrapper {
+    height: 360px;
+  }
+}
+
+/* VIDEO STAYS FULL SIZE INSIDE WRAPPER */
+.video-wrapper video.main-video {
+  width: 100%;
+  height: 100%;
+   object-fit: contain;  
+  background: #000;
+}
+
+/* CENTERED LOADER */
+.video-loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* SPINNER */
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+.play-all-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  padding: 0 var(--space-4);
+  height: 3rem;
+  width: 100px;
+  border-radius: var(--radius-pill);
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.play-all-btn:hover {
+  background: #e6a400;
+}
+
+/* ---------- LET'S BEGIN ---------- */
+.lets-section {
+  padding: clamp(var(--space-6), 7vw, var(--space-8))
+    clamp(var(--space-5), 6vw, var(--space-7))
+    clamp(var(--space-8), 12vw, var(--space-10));
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--space-5), 4vw, var(--space-6));
+}
+
+.lets-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.lets-header h4 {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  margin: 0;
+}
+
+.lets-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* ---------- CARD ---------- */
+.lesson-card {
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--space-3), 4vw, var(--space-4));
+  border-radius: var(--radius-md);
+  padding: clamp(var(--space-3), 4vw, var(--space-4));
+}
+
+.lesson-thumb-wrapper {
+  position: relative;
+  width: 120px;
+  height: 75px;
+  flex-shrink: 0;
+}
+
+.lesson-thumb {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+  background: #000;
+}
+
+.lesson-duration {
+  position: absolute;
+  bottom: var(--space-2);
+  background: blur(14.2);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  color: #FEFEFE;
+  font-size: var(--font-size-xs);
+  padding: 0.2rem var(--space-2);
+  letter-spacing: 0.05em;
+}
+
+/* ---------- CARD TEXT CONTENT ---------- */
+.lesson-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--space-2), 2vw, var(--space-3));
+}
+
+.lesson-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.lesson-title-row h5 {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin: 0;
+}
+
+.lesson-tag {
+  background: #e6f4ef;
+  color: var(--color-brand);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  padding: 0 clamp(var(--space-2), 3vw, var(--space-3));
+  font-weight: 500;
+}
+
+.lesson-content p {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .free-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .free-header,
+  .free-section,
+  .video-container,
+  .lets-section {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}
+
+@media (min-width: 768px) {
+  .free-header,
+  .video-container,
+  .lets-section {
+    padding-left: clamp(var(--space-7), 6vw, var(--space-9));
+    padding-right: clamp(var(--space-7), 6vw, var(--space-9));
+  }
+
+  .lesson-card {
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .video-container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .main-video {
+    flex: 2;
+  }
+
+  .video-details {
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 384px) {
+  .free-logo-section h3 {
+    font-size: var(--font-size-md);
+  }
+
+  .free-section h4,
+  .lets-header h4 {
+    font-size: var(--font-size-md);
+  }
+
+  .video-details h5,
+  .lesson-title-row h5 {
+    font-size: var(--font-size-xs);
+  }
+
+  .play-all-btn,
+  .see-more {
+    font-size: calc(var(--font-size-xs) - 0.1rem);
+  }
+
+  .lesson-content p {
+    font-size: calc(var(--font-size-xs) - 0.1rem);
+  }
+}
+
+@media (max-width: 320px) {
+  .free-header,
+  .free-section,
+  .video-container,
+  .lets-section {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+
+  .free-tabs {
+    gap: var(--space-3);
+  }
+
+  .free-tabs .nav-link {
+    font-size: calc(var(--font-size-xs) - 0.1rem);
+  }
+
+  .lesson-card {
+    padding: var(--space-3);
+  }
+
+  .lesson-content p {
+    font-size: calc(var(--font-size-xs) - 0.15rem);
+  }
+}

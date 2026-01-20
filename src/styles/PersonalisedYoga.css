@@ -1,0 +1,70 @@
+.personalised-yoga__splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  z-index: 9999;
+}
+
+.personalised-yoga__splash img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.personalised-yoga__error {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background-color: #f5f5f5;
+}
+
+.personalised-yoga__error-card {
+  width: 100%;
+  max-width: 480px;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 36px 32px;
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.personalised-yoga__error-card h1 {
+  margin-bottom: 12px;
+  font-size: 24px;
+  color: #222;
+}
+
+.personalised-yoga__error-card p {
+  margin-bottom: 24px;
+  font-size: 16px;
+  color: #555;
+}
+
+.personalised-yoga__error-button {
+  padding: 12px 24px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.personalised-yoga__error-button:focus-visible {
+  outline: 2px solid #0b6cbf;
+  outline-offset: 2px;
+}
+
+.personalised-yoga__error-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
