@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactElement } from 'react';
 import { Capacitor } from '@capacitor/core';
-import { Preferences } from '@capacitor/preferences';
+// import { Preferences } from '@capacitor/preferences';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { StatusBar } from '@capacitor/status-bar';
 import './App.css';
@@ -38,44 +38,44 @@ const NAVBAR_PATHS = new Set([
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname); // Track current path
 
-  useEffect(() => {
-    let active = true;
-    const checkSession = async () => {
-      try {
-        // const [{ value: token }, { value: loggedAt }] = await Promise.all([
-        //   Preferences.get({ key: 'accessToken' }),
-        //   Preferences.get({ key: SESSION_TIMESTAMP_KEY }),
-        // ]);
+  // useEffect(() => {
+  //   let active = true;
+  //   const checkSession = async () => {
+  //     try {
+  //       // const [{ value: token }, { value: loggedAt }] = await Promise.all([
+  //       //   Preferences.get({ key: 'accessToken' }),
+  //       //   Preferences.get({ key: SESSION_TIMESTAMP_KEY }),
+  //       // ]);
 
-        // if (token && loggedAt) {
-        //   const lastLogin = Number(loggedAt);
-        //   if (!Number.isNaN(lastLogin) && Date.now() - lastLogin < SESSION_DURATION_MS) {
-        //     window.history.replaceState(null, '', HOME_PATH);
-        //     if (active) {
-        //       setCurrentPath(HOME_PATH);
-        //     }
-        //     return;
-        const { value: token } = await Preferences.get({ key: 'accessToken' });
-        if (token) {
-          window.history.replaceState(null, '', HOME_PATH);
-          if (active) {
-            setCurrentPath(HOME_PATH);
-          }
-        }
+  //       // if (token && loggedAt) {
+  //       //   const lastLogin = Number(loggedAt);
+  //       //   if (!Number.isNaN(lastLogin) && Date.now() - lastLogin < SESSION_DURATION_MS) {
+  //       //     window.history.replaceState(null, '', HOME_PATH);
+  //       //     if (active) {
+  //       //       setCurrentPath(HOME_PATH);
+  //       //     }
+  //       //     return;
+  //       const { value: token } = await Preferences.get({ key: 'accessToken' });
+  //       if (token) {
+  //         window.history.replaceState(null, '', HOME_PATH);
+  //         if (active) {
+  //           setCurrentPath(HOME_PATH);
+  //         }
+  //       }
 
-        // await Preferences.remove({ key: 'accessToken' });
-        // await Preferences.remove({ key: 'userInfo' });
-        // await Preferences.remove({ key: SESSION_TIMESTAMP_KEY });
-      } catch (error) {
-        console.warn('Unable to verify saved session', error);
-      }
-    };
+  //       // await Preferences.remove({ key: 'accessToken' });
+  //       // await Preferences.remove({ key: 'userInfo' });
+  //       // await Preferences.remove({ key: SESSION_TIMESTAMP_KEY });
+  //     } catch (error) {
+  //       console.warn('Unable to verify saved session', error);
+  //     }
+  //   };
 
-    void checkSession();
-    return () => {
-      active = false;
-    };
-  }, []);
+  //   void checkSession();
+  //   return () => {
+  //     active = false;
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (!Capacitor.isNativePlatform()) {
