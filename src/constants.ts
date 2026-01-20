@@ -20,4 +20,5 @@ export const ASANA_PLAN_CACHE_KEY = "latestAsanaPlan";
 export const LINKEDIN_CLIENT_ID = "86vsc64l7ygk4q";
 export const LINKEDIN_REDIRECT_URI = "http://localhost:3000" ; 
 export const LINKEDIN_OAUTH_ENDPOINT = "https://www.linkedin.com/oauth/v2/authorization";
+export const USER_ATTENDANCE = `${API_ROOT}/api/v1/users/user-attendance`;
 

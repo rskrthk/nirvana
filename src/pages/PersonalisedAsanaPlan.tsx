@@ -11,6 +11,7 @@ import { mergePlanAsanas, safeRevokeUrl, decodeBase64ToUint8Array, withTimeout }
 import { getVideoFileName, getCachedVideoUrl, saveVideoToFS, } from "../utils/Videofilesystem";
 import { AsanaItem, AsanaPlanData, ScreenOrientationLike, VideoSource } from "./interface";
 import { log } from "console";
+import { startVideoTracking, flushAttendanceQueue } from "../common/analytics/videoTracking";
 
 const buildDirectStreamUrl = (asanaCode: string, token: string, resolution = "720p", isExplanation = false) =>
   `${VIDEO_STREAM_ENDPOINT_BASE}/${asanaCode}${isExplanation ? "?explanation=true" : ""}`;
@@ -45,9 +46,14 @@ export const PersonalisedAsanaPlan: React.FC = () => {
   const [downloadProgress, setDownloadProgress] = useState<{ current: number; total: number } | null>(null);
   const [mergeProgress, setMergeProgress] = useState<{ progress: number; message: string } | null>(null);
   const [activeTab, setActiveTab] = useState<string>("");
+  const mergedTrackerRef = useRef<{ stop: () => Promise<void> } | null>(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, []);
+
+  useEffect(() => {
+    flushAttendanceQueue();
   }, []);
 
   const getPlayableSrc = (url?: string) => {
@@ -954,6 +960,30 @@ export const PersonalisedAsanaPlan: React.FC = () => {
       }
     };
   }, [mergedVideoUrl]);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    const active = currentVideoMode === "merged" && mergedVideoUrl && v;
+    const id = `${planData?.title || "merged"}:${new Date().toISOString().slice(0, 10)}`;
+    const notes = "Merged Asanas";
+    const attach = async () => {
+      if (v && active) {
+        if (mergedTrackerRef.current) {
+          await mergedTrackerRef.current.stop();
+          mergedTrackerRef.current = null;
+        }
+        mergedTrackerRef.current = startVideoTracking(v, { sessionKey: id, notes });
+      }
+    };
+    attach();
+    return () => {
+      const h = mergedTrackerRef.current;
+      if (h) {
+        h.stop();
+        mergedTrackerRef.current = null;
+      }
+    };
+  }, [currentVideoMode, mergedVideoUrl, planData]);
 
   const handleAsanaClick = (index: number) => {
     const asana = orderedAsanas[index];
